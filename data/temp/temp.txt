@@ -1,0 +1,17 @@
+                   CURRY VILLAGE                   
+                  BANANA LEAF P/L                  
+                8 LIM TECK KIM ROAD                
+                  TEL : 6226 2562                  
+----------------------------------------------------
+                   Receipt No: 3                   
+Date:                            2024-10-30 23:34:24
+Table: B14
+----------------------------------------------------
+Qty  Items                      Price     Amount    
+1    Toasted Bagel Jam          1.50      1.50      
+1    Toast and Jam              1.50      1.50      
+1    Bacon and Tomato           3.49      3.49      
+100  Egg, Bacon Cheese          3.99      399.00    
+====================================================
+Total:                                        405.49
+
