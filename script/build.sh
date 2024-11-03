@@ -1,1 +1,2 @@
-go run main.go
+go build -mod=vendor cmd/printing/main.go
+./main

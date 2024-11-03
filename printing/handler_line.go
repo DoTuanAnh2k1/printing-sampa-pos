@@ -3,9 +3,35 @@ package printing
 import (
 	"errors"
 	"regexp"
-	"strconv"
 	"strings"
 )
+
+func GetLineFormat(line string) (string, error) {
+	var output string
+	lineFormat, err := HandlerLine(line)
+	if err != nil {
+		return output, err
+	}
+	err = validateLine(line)
+	if err != nil {
+		return output, err
+	}
+
+	if lineFormat.IsFull {
+		return HandlerBar(lineFormat.Body), nil
+	}
+
+	switch lineFormat.Format.Align {
+	case TagC:
+		output = centerlizeReceipt(lineFormat.Body)
+	case TagJ:
+		output = justifyRecept(lineFormat.Body)
+	default:
+		output = lineFormat.Body + "\n"
+	}
+
+	return output, nil
+}
 
 // Convert from line type string to Line have format
 func HandlerLine(line string) (*Line, error) {
@@ -18,7 +44,7 @@ func HandlerLine(line string) (*Line, error) {
 		}
 		if tag == "F" {
 			lineInfo.IsFull = true
-			lineInfo.Body = HandlerBar(body)
+			lineInfo.Body = body
 			return &lineInfo, nil
 		}
 		lineInfo.Body = body
@@ -85,12 +111,4 @@ func HandlerTag(line string) string {
 		return match[1]
 	}
 	return ""
-}
-
-func convertFromStringToInt(s string) (int, error) {
-	num, err := strconv.Atoi(s)
-	if err != nil {
-		return 0, errors.New("invalid number")
-	}
-	return num, nil
 }

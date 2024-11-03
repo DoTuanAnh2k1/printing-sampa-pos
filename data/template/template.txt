@@ -1,0 +1,13 @@
+Terminal        : Terminal
+Cashier         :  Chronical Do
+Date            :   2024-11-02 10:10:210
+Bill            : 2024-11-02 10:10:38
+[Cover:10]
+Name Highland Coffee [1.00] [15.00]
+Name Red Bull [1.00] [18.50]
+Tendered    :   jywtellznu
+Change      :   jqgvapcjhn
+RefNo       :   834
+Tendered    :   oavqwdvkkl
+Change      :   pypnzkpbim
+RefNo       :   958
