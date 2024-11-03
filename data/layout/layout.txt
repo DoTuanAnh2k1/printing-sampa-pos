@@ -1,54 +1,89 @@
 [LAYOUT]
-
-<C10>CURRY VILLAGE
-<C10>BANANA LEAF P/L
-<C>8 LIM TECK KIM ROAD
-<C>TEL : 6226 2562
-<F>-
-<C10>Receipt No: {TICKET NO}
-<J00>Date: |{DATE} {TIME}
-{ENTITIES}
-<F>-
-<J00> Qty Items|Price  Amount
-{ORDERS}
-<F>=
+<EC>
+<XCT>29,40,76,6,0,48,69,32,32,1,1
+<DC>
+<F>
 <EB>
-{DISCOUNTS}
-[<J10>Total Gift:|{ORDER STATE TOTAL:Gift}]
-<J10>Total:|{TICKET TOTAL}
-<J10>{TICKET TAG:PersonCount}
-{PAYMENTS}
+<C>Hashmato
+<C>Singapore  078883
 <DB>
-<F>=
-<C10>THANK YOU
+<C>Receipt
+<F>-
+[<L>{TICKET STATE VALUE:Refund}]
+[<L>Reason : {TICKET STATE NOTE:Refund}]
+[<L>Time : {TICKET STATE TIME:Refund}]
+[<C>{COPY}]
+<J>Check No:|{TICKET NO}
+<J>Order Time:|{TICKET TIME}
+[<JOO>Terminal|{CURRENT TERMINAL}]
+[<JOO>Cashier|{PAYMENT USER}]
 
+<C>{DATE} {TIME}
+<C>Bill : {TICKET PAYMENT DATE} {TICKET PAYMENT TIME}
+[<JOO>Cover:{TICKET TAG:PAX}]
+<F>-
+<J00>NAME|  QTY|  RATE|   AMT
+<F>-
+{ORDERS}
+<F>-
+<EB>
+[<JOO>Sub Total:|{PLAIN TOTAL}]
+{DISCOUNTS}
+{SERVICES}
+[<J00>Total Gift:|{ORDER STATE TOTAL:Gift}]
+[<J00>Total Wastage:|{ORDER STATE TOTAL:Comp}]
+{TAXES}
+[<J00> Discount|{TICKET PROMOTION TOTAL}]
+<J10>Total:|S$ {TICKET TOTAL}
+<F>-
+{PAYMENTS}
+[<L>Ref No: {REFERENCENUMBER}]
+<F>-
+[<JOO>Tendered : |{TICKET TAG:Tendered}]
+[<JOO>Change   : |{TICKET TAG:ChangeDue}]
+<DB>
+<F>-
+{ENTITIES}
+<F>
+<C>{DEPARTMENT}
+<F>
+<F>
 [DISCOUNTS]
-<J00>{CALCULATION NAME} %{CALCULATION AMOUNT}|{CALCULATION TOTAL}
+[<J00>{CALCULATION NAME} {CALCULATION DESCRIPTION}|{CALCULATION TOTAL}]
+
+[SERVICES]
+[<J00>{CALCULATION NAME}|{CALCULATION TOTAL}]
+
+[TAXES]
+[<J00>Tax: {TAX NAME} {TAX RATE}%|{TAX AMOUNT}]
 
 [PAYMENTS]
 <J00>{PAYMENT NAME}|{PAYMENT AMOUNT}
 
 [ORDERS]
--- Default format for orders
-<J00>   {QUANTITY} {NAME}|{PRICE}  {TOTAL AMOUNT}
-{ORDER TAGS}
+<J00> {NAME}|   {QUANTITY}|  {ACTUALPRICE}|   {ACTUALPRICETOTAL}
+[<J00>{PROMOTION NAME}|({PROMOTION TOTAL})]
+{ORDER PROMOTIONS}
+
+[ORDERS:Comp]
+<J00> {NAME}|   {QUANTITY}|  {ACTUALPRICE}|   {ACTUALPRICETOTAL}
 
 [ORDERS:Gift]
--- Format for gifted orders
-<J00>- {QUANTITY} {NAME}|**GIFT**
-{ORDER TAGS}
+-- Nothing will print for void lines
 
 [ORDERS:Void]
 -- Nothing will print for void lines
 
 [ORDER TAGS]
--- Format for order tags
 <J00> * {ORDER TAG NAME} | {ORDER TAG PRICE}
 
-[ENTITIES:Table]
--- Table entity format
-<L00>Table: {ENTITY NAME}
+[ORDER PROMOTIONS]
+<J00> * {ORDER PROMOTION NAME} | {ORDER PROMOTION TOTAL}
 
-[ENTITIES:Customer]
--- Customer entity format
-<J00>Customer: {ENTITY NAME} | {ENTITY DATA:Phone}
+
+[ENTITIES:Table]
+<L11>Table: {ENTITY NAME}
+
+[ENTITIES:Member]
+<J10>MEMBER: {ENTITY NAME} | {ENTITY DATA:Name}
+<J10>MEMBER: {ENTITY DATA:Address}

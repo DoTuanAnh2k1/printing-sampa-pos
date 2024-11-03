@@ -62,3 +62,15 @@ func TestHandlePayment(t *testing.T) {
 	require.NoError(t, err)
 	fmt.Println(output)
 }
+
+func TestHandleService(t *testing.T) {
+	output, err := printing.HandleService(printing.LayoutTest)
+	require.NoError(t, err)
+	fmt.Println(output)
+}
+
+func TestHandleTax(t *testing.T) {
+	output, err := printing.HandleTax(printing.LayoutTest)
+	require.NoError(t, err)
+	fmt.Println(output)
+}

@@ -5,10 +5,11 @@ import (
 	"strings"
 )
 
+// TODO: Update ORDERS with the new layer
 func HandleOrder(layout string) (string, error) {
 	var order strings.Builder
 
-	ordersSectionLayout, ordersGiftSectionLayout, ordersTagSectionLayout := getOrdersSections(layout)
+	ordersSectionLayout, ordersGiftSectionLayout, ordersTagSectionLayout, ordersPromotionSectionLayout := getOrdersSections(layout)
 	ordersSectionLayout = strings.ReplaceAll(ordersSectionLayout, "{ORDER TAGS}", ordersTagSectionLayout)
 	ordersGiftSectionLayout = strings.ReplaceAll(ordersGiftSectionLayout, "{ORDER TAGS}", ordersTagSectionLayout)
 	orderSection, err := handleOrderLine(ordersSectionLayout)
@@ -19,10 +20,17 @@ func HandleOrder(layout string) (string, error) {
 	if err != nil {
 		return order.String(), err
 	}
+	ordersPromotionSection, err := handleOrderLine(ordersPromotionSectionLayout)
+	if err != nil {
+		return order.String(), err
+	}
 
 	order.WriteString(orderSection)
 	order.WriteString("\n")
 	order.WriteString(orderGiftSection)
+	order.WriteString("\n")
+	order.WriteString(ordersPromotionSection)
+
 	return order.String(), nil
 }
 
@@ -39,7 +47,12 @@ func handleOrderLine(orderLine string) (string, error) {
 	return removeEmptyLines(order.String()), nil
 }
 
-func getOrdersSections(layout string) (ordersSectionLayout string, ordersGiftSectionLayout string, ordersTagSectionLayout string) {
+func getOrdersSections(layout string) (
+	ordersSectionLayout string,
+	ordersGiftSectionLayout string,
+	ordersTagSectionLayout string,
+	ordersPromotionSectionLayout string,
+) {
 	// get order section
 	reOrders := regexp.MustCompile(`(?s)\[ORDERS\](.*?)\[`)
 	matchesOrders := reOrders.FindStringSubmatch(layout)
@@ -59,6 +72,13 @@ func getOrdersSections(layout string) (ordersSectionLayout string, ordersGiftSec
 	matchesOrdersTag := reOrdersTag.FindStringSubmatch(layout)
 	if len(matchesOrdersTag) > 1 {
 		ordersTagSectionLayout = matchesOrdersTag[1]
+	}
+
+	// get order promotion section
+	reOrderPromotion := regexp.MustCompile(`(?s)\[ORDER PROMOTIONS\](.*?)\[`)
+	matchesOrderPromotion := reOrderPromotion.FindStringSubmatch(layout)
+	if len(matchesOrderPromotion) > 1 {
+		ordersPromotionSectionLayout = matchesOrderPromotion[1]
 	}
 
 	return
