@@ -74,3 +74,9 @@ func TestHandleTax(t *testing.T) {
 	require.NoError(t, err)
 	fmt.Println(output)
 }
+
+func TestHandleEntity(t *testing.T) {
+	output, err := printing.HandleEntity(printing.LayoutTest)
+	require.NoError(t, err)
+	fmt.Println(output)
+}
