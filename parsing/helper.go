@@ -6,8 +6,7 @@ import (
 )
 
 func getTemplate(inputFileTemplatePath string) string {
-	lines, err := utils.ReadFromFileToLines(inputFileTemplatePath)
-	utils.CheckErr(err)
+	lines, _ := utils.ReadFromFileToLines(inputFileTemplatePath)
 
 	m := make(map[string]string)
 	for _, line := range lines {
@@ -21,7 +20,6 @@ func getTemplate(inputFileTemplatePath string) string {
 }
 
 func getLayout(inputFileLayoutPath string) string {
-	layout, err := utils.ReadFromFile(inputFileLayoutPath)
-	utils.CheckErr(err)
+	layout, _ := utils.ReadFromFile(inputFileLayoutPath)
 	return layout
 }

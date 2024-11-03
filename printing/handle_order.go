@@ -27,16 +27,16 @@ func HandleOrder(layout string) (string, error) {
 }
 
 func handleOrderLine(orderLine string) (string, error) {
-	var orderTag strings.Builder
+	var order strings.Builder
 	lines := strings.Split(orderLine, "\n")
 	for _, line := range lines {
 		lineFormat, err := GetLineFormat(line)
 		if err != nil {
-			return orderTag.String(), err
+			return order.String(), err
 		}
-		orderTag.WriteString(lineFormat)
+		order.WriteString(lineFormat)
 	}
-	return removeEmptyLines(orderTag.String()), nil
+	return removeEmptyLines(order.String()), nil
 }
 
 func getOrdersSections(layout string) (ordersSectionLayout string, ordersGiftSectionLayout string, ordersTagSectionLayout string) {
@@ -62,15 +62,4 @@ func getOrdersSections(layout string) (ordersSectionLayout string, ordersGiftSec
 	}
 
 	return
-}
-
-func removeEmptyLines(input string) string {
-	lines := strings.Split(input, "\n")
-	var nonEmptyLines []string
-	for _, line := range lines {
-		if strings.TrimSpace(line) != "" {
-			nonEmptyLines = append(nonEmptyLines, line)
-		}
-	}
-	return strings.Join(nonEmptyLines, "\n")
 }
