@@ -1,6 +1,7 @@
 package printing_test
 
 import (
+	"fmt"
 	"printing-sampa-pos/printing"
 	"testing"
 
@@ -42,4 +43,22 @@ func TestHandlerHeader(t *testing.T) {
 
 	_, _, _, _, err = printing.HandlerHeader("<Cxy>ajdhaf")
 	require.EqualError(t, err, "invalid number")
+}
+
+func TestHandleOrder(t *testing.T) {
+	output, err := printing.HandleOrder(printing.LayoutTest)
+	require.NoError(t, err)
+	fmt.Println(output)
+}
+
+func TestHandleDiscount(t *testing.T) {
+	output, err := printing.HandleDiscount(printing.LayoutTest)
+	require.NoError(t, err)
+	fmt.Println(output)
+}
+
+func TestHandlePayment(t *testing.T) {
+	output, err := printing.HandlePayment(printing.LayoutTest)
+	require.NoError(t, err)
+	fmt.Println(output)
 }
