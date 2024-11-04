@@ -41,9 +41,9 @@ func handleEntityLine(entityLine string) (string, error) {
 func getEntitySections(layout string) (entityTableSectionLayout string, entityMemberSectionLayout string) {
 	// get entity table section
 	reEntityTable := regexp.MustCompile(`(?s)\[ENTITIES:Table\](.*?)\[`)
-	matchesEntitys := reEntityTable.FindStringSubmatch(layout)
-	if len(matchesEntitys) > 1 {
-		entityTableSectionLayout = matchesEntitys[1]
+	matchesEntity := reEntityTable.FindStringSubmatch(layout)
+	if len(matchesEntity) > 1 {
+		entityTableSectionLayout = matchesEntity[1]
 	}
 
 	// get entity member section

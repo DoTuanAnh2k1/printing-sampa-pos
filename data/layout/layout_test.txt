@@ -10,25 +10,20 @@
 <DB>
 <C>Receipt
 <F>-
-[<L>{TICKET STATE VALUE:Refund}]
-[<L>Reason : {TICKET STATE NOTE:Refund}]
-[<L>Time : {TICKET STATE TIME:Refund}]
-[<C>{COPY}]
 <J>Check No:|{TICKET NO}
 <J>Order Time:|{TICKET TIME}
-[<JOO>Terminal|{CURRENT TERMINAL}]
-[<JOO>Cashier|{PAYMENT USER}]
+<JOO>Terminal|Terminal
+<JOO>Cashier|Chronnical Do 
 
-<C>{DATE} {TIME}
-<C>Bill : {TICKET PAYMENT DATE} {TICKET PAYMENT TIME}
-[<JOO>Cover:{TICKET TAG:PAX}]
+<C>2006-01-02 15:12:13
+<C>Bill : 2006-01-02 15:12:13
+<JOO>Cover:10
 <F>-
 <J00>NAME|  QTY|  RATE|   AMT
 <F>-
 {ORDERS}
 <F>-
 <EB>
-[<JOO>Sub Total:|{PLAIN TOTAL}]
 {DISCOUNTS}
 {SERVICES}
 [<J00>Total Gift:|{ORDER STATE TOTAL:Gift}]
@@ -63,17 +58,10 @@
 
 [ORDERS]
 <J00> {NAME}|   {QUANTITY}|  {ACTUALPRICE}|   {ACTUALPRICETOTAL}
-[<J00>{PROMOTION NAME}|({PROMOTION TOTAL})]
 {ORDER PROMOTIONS}
 
 [ORDERS:Comp]
 <J00> {NAME}|   {QUANTITY}|  {ACTUALPRICE}|   {ACTUALPRICETOTAL}
-
-[ORDERS:Gift]
--- Nothing will print for void lines
-
-[ORDERS:Void]
--- Nothing will print for void lines
 
 [ORDER TAGS]
 <J00> * {ORDER TAG NAME} | {ORDER TAG PRICE}

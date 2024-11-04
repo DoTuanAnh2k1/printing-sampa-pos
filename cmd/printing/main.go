@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"printing-sampa-pos/printing"
+)
 
 func main() {
-	fmt.Println("Hello")
+	output, err := printing.HandleLayout(printing.LayoutTest)
+	if err != nil {
+		fmt.Println("err: ", err)
+	}
+	fmt.Println(output)
 }

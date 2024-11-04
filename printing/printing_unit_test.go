@@ -80,3 +80,9 @@ func TestHandleEntity(t *testing.T) {
 	require.NoError(t, err)
 	fmt.Println(output)
 }
+
+func TestHandleLayout(t *testing.T) {
+	output, err := printing.HandleLayout(printing.LayoutTest)
+	require.NoError(t, err)
+	fmt.Println(output)
+}

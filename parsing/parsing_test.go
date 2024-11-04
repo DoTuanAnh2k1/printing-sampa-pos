@@ -19,4 +19,5 @@ func TestParsingTicketFromTemplate(t *testing.T) {
 	require.NotEmpty(t, ticket.Orders)
 	fmt.Println(ticket.Payments)
 	fmt.Println(ticket.Orders)
+	fmt.Println(ticket.Tag.Pax)
 }

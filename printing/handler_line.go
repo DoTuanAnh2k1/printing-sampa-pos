@@ -56,6 +56,8 @@ func HandlerLine(line string) (*Line, error) {
 			lineInfo.Format.FrontWidth = width
 		}
 		return &lineInfo, nil
+	} else {
+		lineInfo.Body = line
 	}
 
 	return &lineInfo, nil
@@ -64,14 +66,15 @@ func HandlerLine(line string) (*Line, error) {
 func HandlerBar(barType string) string {
 	switch barType {
 	case "-":
-		return Dash
+		return Dash + "\n"
 	case "=":
-		return DoubleDash
+		return DoubleDash + "\n"
 	default:
 		ans := ""
 		for i := 0; i < (SizeOfReceipt / len(barType)); i++ {
 			ans = ans + barType
 		}
+		ans = ans + "\n"
 		return ans
 	}
 }
@@ -85,7 +88,7 @@ func HandlerHeader(line string) (string, string, int, int, error) {
 	parts := strings.Split(line, ">")
 	body := parts[len(parts)-1]
 	// tag := strings.TrimPrefix(parts[1], "<")
-	if len(tag) == 1 {
+	if len(tag) == 1 || len(tag) == 0 || len(tag) == 2 {
 		return tag, body, -1, -1, nil
 	}
 	if len(tag) == 3 {
@@ -99,6 +102,7 @@ func HandlerHeader(line string) (string, string, int, int, error) {
 		}
 		return string(tag[0]), body, frontHeight, frontWidth, nil
 	}
+
 	return "", "", -1, -1, errors.New("invalid tag")
 }
 
