@@ -1,3 +1,6 @@
+package parsing
+
+var TemplateTest = `
 Terminal        : Terminal
 Cashier         :  Chronical Do
 Date            :   2024-11-03 16:59:34
@@ -18,3 +21,4 @@ RefNo       :   717
 ##Ticket.Orders##
 Name Highland Coffee [1.00] [15.00]
 Name Red Bull [1.00] [18.50]
+`
