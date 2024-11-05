@@ -29,3 +29,7 @@ go.mod
 
 # main build
 main
+
+# vscode
+.vscode
+.idea

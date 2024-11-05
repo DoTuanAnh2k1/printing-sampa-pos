@@ -36,7 +36,10 @@ func GetLineFormat(line string) (string, error) {
 // Convert from line type string to Line have format
 func HandlerLine(line string) (*Line, error) {
 	var lineInfo Line
-
+	if line == "<EB>" || line == "<DB>" {
+		lineInfo.Body = line
+		return &lineInfo, nil
+	}
 	if strings.Contains(line, "<") && strings.Contains(line, ">") {
 		tag, body, height, width, err := HandlerHeader(line)
 		if err != nil {

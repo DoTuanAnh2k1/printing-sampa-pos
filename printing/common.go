@@ -65,8 +65,10 @@ func validateLine(line string) error {
 
 var LayoutTest = `
 [LAYOUT]
+<EB>
 <C10>CURRY VILLAGE
 <C10>BANANA LEAF P/L
+<DB>
 <C>8 LIM TECK KIM ROAD
 <C>TEL : 6226 2562
 <F>-
@@ -77,9 +79,8 @@ var LayoutTest = `
 {ORDERS}
 <EB>
 {DISCOUNTS}
-[<J10>Total Gift:|{ORDER STATE TOTAL:Gift}]
 <J10>Total:|{TICKET TOTAL}
-<J10>{TICKET TAG:PersonCount}
+<J10>{TICKET TAG:PersonCount}|
 {PAYMENTS}
 <DB>
 <F>=

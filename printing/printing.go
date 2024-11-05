@@ -1,8 +1,13 @@
 package printing
 
-import "github.com/mect/go-escpos"
+import (
+	"strings"
+
+	"github.com/mect/go-escpos"
+)
 
 func Printing(data string) error {
+	lines := strings.Split(data, "\n")
 	p, err := escpos.NewUSBPrinterByPath("")
 	if err != nil {
 		return err
@@ -13,7 +18,14 @@ func Printing(data string) error {
 		return err
 	}
 
-	p.Print(data)
+	for _, line := range lines {
+		if line == "<EB>" {
+			p.EnableBold()
+		} else if line == "<DB>" {
+			p.DisableBold()
+		}
+		p.Print(line)
+	}
 
 	p.Feed(2)
 	p.Cut()
