@@ -4,7 +4,6 @@ import (
 	"printing-sampa-pos/model"
 	"printing-sampa-pos/utils"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
@@ -32,7 +31,7 @@ func FromTemplateToTicket(template string) model.Ticket {
 	reCashier := regexp.MustCompile(`(?m)^Cashier\s*:\s*(.*)`)
 	reDate := regexp.MustCompile(`(?m)^Date\s*:\s*(.*)`)
 	reBill := regexp.MustCompile(`(?m)^Bill\s*:\s*(.*)`)
-	reTag := regexp.MustCompile(`(?m)^\[Cover:(\d+)\]`)
+	reTag := regexp.MustCompile(`(?m)^Cover:(\d+)`)
 	rePayment := regexp.MustCompile(`(?m)^Tendered\s*:\s*(.*)\nChange\s*:\s*(.*)\nRefNo\s*:\s*(\d+)`)
 	reOrder := regexp.MustCompile(`(?m)^Name\s+(.*)\s+\[(\d+\.\d+)\]\s+\[(\d+\.\d+)\]`)
 
@@ -41,7 +40,7 @@ func FromTemplateToTicket(template string) model.Ticket {
 		ticket.Terminal = strings.TrimSpace(match[1])
 	}
 	if match := reCashier.FindStringSubmatch(template); match != nil {
-		ticket.Cashier = strings.TrimSpace(match[1])
+		ticket.LoginUser = strings.TrimSpace(match[1])
 	}
 	if match := reDate.FindStringSubmatch(template); match != nil {
 		ticket.PaymentDate = strings.TrimSpace(match[1])
@@ -50,19 +49,17 @@ func FromTemplateToTicket(template string) model.Ticket {
 		ticket.PaymentType = strings.TrimSpace(match[1])
 	}
 	if match := reTag.FindStringSubmatch(template); match != nil {
-		pax, _ := strconv.Atoi(match[1])
-		ticket.Tag.Pax = pax
+		ticket.Tag.Pax = match[1]
 	}
 
 	// Extracting payments
 	paymentMatches := rePayment.FindAllStringSubmatch(template, -1)
 	for _, match := range paymentMatches {
-		refNo, _ := strconv.Atoi(match[3])
 		payment := model.Payment{
 			Name:     match[1],
 			Tendered: match[2],
 			PaymentInformation: model.PaymentInfo{
-				RefNo: refNo,
+				RefNo: match[3],
 			},
 		}
 		ticket.Payments = append(ticket.Payments, payment)

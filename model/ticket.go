@@ -2,16 +2,20 @@ package model
 
 type Ticket struct {
 	Terminal    string
-	Cashier     string // Doesn't require
+	LoginUser   string
 	PaymentDate string
+	PaymentTime string
 	PaymentType string
 	Tag         Tag
 	Payments    []Payment
 	Orders      []Order
+	Discounts   []Discount
+	Services    []Service
+	Taxes       []Tax
 }
 
 type Tag struct {
-	Pax     int
+	Pax     string
 	PaxTime string
 }
 
@@ -22,7 +26,7 @@ type Payment struct {
 }
 
 type PaymentInfo struct {
-	RefNo   int
+	RefNo   string
 	RefTime string
 }
 
@@ -30,4 +34,16 @@ type Order struct {
 	Name     string
 	Quantity string
 	Price    string
+}
+
+type Discount struct {
+	Name string
+}
+
+type Service struct {
+	Name string
+}
+
+type Tax struct {
+	Name string
 }

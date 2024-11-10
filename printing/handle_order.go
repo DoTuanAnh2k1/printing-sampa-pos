@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-// TODO: Update ORDERS with the new layer
 func HandleOrder(layout string) (string, error) {
 	var order strings.Builder
 

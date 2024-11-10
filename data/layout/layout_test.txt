@@ -14,7 +14,6 @@
 <J>Order Time:|{TICKET TIME}
 <JOO>Terminal|Terminal
 <JOO>Cashier|Chronnical Do 
-
 <C>2006-01-02 15:12:13
 <C>Bill : 2006-01-02 15:12:13
 <JOO>Cover:10
