@@ -18,5 +18,7 @@ func replaceValue(layout string, ticket model.Ticket) string {
 
 	layout = replaceOrder(layout, ticket.Orders)
 	layout = replaceTax(layout, ticket.Taxes)
+	layout = replaceDiscount(layout, ticket.Discounts)
+
 	return layout
 }

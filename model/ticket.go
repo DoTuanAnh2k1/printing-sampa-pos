@@ -37,7 +37,9 @@ type Order struct {
 }
 
 type Discount struct {
-	Name string
+	Name        string
+	Description string
+	Total       string
 }
 
 type Service struct {
