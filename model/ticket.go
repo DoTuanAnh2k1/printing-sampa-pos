@@ -43,7 +43,8 @@ type Discount struct {
 }
 
 type Service struct {
-	Name string
+	Name  string
+	Total string
 }
 
 type Tax struct {
