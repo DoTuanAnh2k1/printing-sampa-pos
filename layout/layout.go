@@ -17,5 +17,6 @@ func replaceValue(layout string, ticket model.Ticket) string {
 	layout = strings.ReplaceAll(layout, "{Ticket.PaymentType}", ticket.PaymentType)
 
 	layout = replaceOrder(layout, ticket.Orders)
+	layout = replaceTax(layout, ticket.Taxes)
 	return layout
 }

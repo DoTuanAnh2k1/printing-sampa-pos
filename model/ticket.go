@@ -45,5 +45,7 @@ type Service struct {
 }
 
 type Tax struct {
-	Name string
+	Name   string
+	Rate   string
+	Amount string
 }

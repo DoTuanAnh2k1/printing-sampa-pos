@@ -20,7 +20,7 @@ func HandleTax(layout string) (string, error) {
 
 func getTaxSection(layout string) (taxSectionLayout string) {
 	// get payment section
-	reTax := regexp.MustCompile(`(?s)\[TaxS\](.*?)\[`)
+	reTax := regexp.MustCompile(`(?s)\[TAXES\](.*?)\[`)
 	matchesTax := reTax.FindStringSubmatch(layout)
 	if len(matchesTax) > 1 {
 		taxSectionLayout = matchesTax[1]

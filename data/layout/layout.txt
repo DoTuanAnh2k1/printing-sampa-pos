@@ -16,7 +16,7 @@
 <J>Check No:|{TICKET NO}
 <J>Order Time:|{TICKET TIME}
 [<JOO>Terminal|{CURRENT TERMINAL}]
-[<JOO>Cashier|{PAYMENT USER}]
+[<JOO>Cashier|{Ticket.LoginUser}]
 
 <C>{DATE} {TIME}
 <C>Bill : {TICKET PAYMENT DATE} {TICKET PAYMENT TIME}
