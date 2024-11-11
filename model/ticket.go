@@ -23,6 +23,7 @@ type Payment struct {
 	Name               string
 	Tendered           string
 	PaymentInformation PaymentInfo
+	Amount             string
 }
 
 type PaymentInfo struct {

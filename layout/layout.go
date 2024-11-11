@@ -20,6 +20,7 @@ func replaceValue(layout string, ticket model.Ticket) string {
 	layout = replaceTax(layout, ticket.Taxes)
 	layout = replaceDiscount(layout, ticket.Discounts)
 	layout = replaceService(layout, ticket.Services)
+	layout = replacePayment(layout, ticket.Payments)
 
 	return layout
 }
