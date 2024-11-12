@@ -72,6 +72,8 @@ func HandlerBar(barType string) string {
 		return Dash + "\n"
 	case "=":
 		return DoubleDash + "\n"
+	case "":
+		return Space + "\n"
 	default:
 		ans := ""
 		for i := 0; i < (SizeOfReceipt / len(barType)); i++ {

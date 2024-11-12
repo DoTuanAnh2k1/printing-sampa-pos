@@ -9,7 +9,7 @@ import (
 func replaceOrder(layout string, orderList []model.Order) string {
 	var orderOut string
 	orderOut = orderOut + "[ORDERS]\n"
-	ordersSectionLayout, _, _, _ := getOrdersSections(layout)
+	ordersSectionLayout := getOrdersSections(layout)
 	for _, order := range orderList {
 		quantity := fromStringToInt(order.Quantity)
 		price := fromStringToFloat(order.Price)
@@ -22,15 +22,58 @@ func replaceOrder(layout string, orderList []model.Order) string {
 		tmp += "\n"
 		orderOut = orderOut + tmp
 	}
+
 	return orderOut
 }
 
-func getOrdersSections(layout string) (
-	ordersSectionLayout string,
-	ordersGiftSectionLayout string,
-	ordersTagSectionLayout string,
-	ordersPromotionSectionLayout string,
-) {
+func replaceOrderTag(layout string, orderTagList []model.OrderTag) string {
+	var orderTagOut string
+	orderTagOut = orderTagOut + "[ORDERS]\n"
+	ordersTagSectionLayout := getOrderTagSection(layout)
+	for _, tag := range orderTagList {
+		tmp := ordersTagSectionLayout
+		tmp = strings.ReplaceAll(tmp, "{ORDER TAG NAME}", tag.Name)
+		tmp = strings.ReplaceAll(tmp, "{ORDER TAG PRICE}", tag.Price)
+		tmp += "\n"
+		orderTagOut = orderTagOut + tmp
+	}
+
+	return orderTagOut
+}
+
+func replaceOrderComp(layout string, orderCompList []model.OrderComp) string {
+	var orderCompOut string
+	orderCompOut = orderCompOut + "[ORDERS:Comp]\n"
+	ordersCompSectionLayout := getOrderCompSection(layout)
+	for _, comp := range orderCompList {
+		tmp := ordersCompSectionLayout
+		tmp = strings.ReplaceAll(tmp, "{NAME}", comp.Name)
+		tmp = strings.ReplaceAll(tmp, "{QUANTITY}", comp.Quantity)
+		tmp = strings.ReplaceAll(tmp, "{PRICE}", comp.Price)
+		tmp = strings.ReplaceAll(tmp, "{TOTAL}", comp.Total)
+		tmp += "\n"
+		orderCompOut = orderCompOut + tmp
+	}
+
+	return orderCompOut
+}
+
+func replaceOrderPromotion(layout string, orderPromotionList []model.OrderPromotion) string {
+	var orderPromotionOut string
+	orderPromotionOut = orderPromotionOut + "[ORDERS PROMOTIONS]\n"
+	orderPromotionSectionLayout := getOrderPromotionSection(layout)
+	for _, comp := range orderPromotionList {
+		tmp := orderPromotionSectionLayout
+		tmp = strings.ReplaceAll(tmp, "{ORDER PROMOTION NAME}", comp.Name)
+		tmp = strings.ReplaceAll(tmp, "{ORDER PROMOTION TOTAL}", comp.Total)
+		tmp += "\n"
+		orderPromotionOut = orderPromotionOut + tmp
+	}
+
+	return orderPromotionOut
+}
+
+func getOrdersSections(layout string) (ordersSectionLayout string) {
 	// get order section
 	reOrders := regexp.MustCompile(`(?s)\[ORDERS\](.*?)\[`)
 	matchesOrders := reOrders.FindStringSubmatch(layout)
@@ -38,26 +81,35 @@ func getOrdersSections(layout string) (
 		ordersSectionLayout = matchesOrders[1]
 	}
 
-	// get order gifts section
-	reOrdersGifts := regexp.MustCompile(`(?s)\[ORDERS:Gift\](.*?)\[`)
-	matchesOrdersGifts := reOrdersGifts.FindStringSubmatch(layout)
-	if len(matchesOrdersGifts) > 1 {
-		ordersGiftSectionLayout = matchesOrdersGifts[1]
-	}
+	return
+}
 
+func getOrderTagSection(layout string) (ordersTagSectionLayout string) {
 	// get order tag section
 	reOrdersTag := regexp.MustCompile(`(?s)\[ORDER TAGS\](.*?)\[`)
 	matchesOrdersTag := reOrdersTag.FindStringSubmatch(layout)
 	if len(matchesOrdersTag) > 1 {
 		ordersTagSectionLayout = matchesOrdersTag[1]
 	}
+	return
+}
 
+func getOrderCompSection(layout string) (ordersCompSectionLayout string) {
+	// get order gifts section
+	reOrdersComp := regexp.MustCompile(`(?s)\[ORDERS:Comp\](.*?)\[`)
+	matchesOrdersComp := reOrdersComp.FindStringSubmatch(layout)
+	if len(matchesOrdersComp) > 1 {
+		ordersCompSectionLayout = matchesOrdersComp[1]
+	}
+	return
+}
+
+func getOrderPromotionSection(layout string) (ordersPromotionSectionLayout string) {
 	// get order promotion section
 	reOrderPromotion := regexp.MustCompile(`(?s)\[ORDER PROMOTIONS\](.*?)\[`)
 	matchesOrderPromotion := reOrderPromotion.FindStringSubmatch(layout)
 	if len(matchesOrderPromotion) > 1 {
 		ordersPromotionSectionLayout = matchesOrderPromotion[1]
 	}
-
 	return
 }
