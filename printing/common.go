@@ -41,11 +41,17 @@ const (
 // }
 
 func centerlizeReceipt(s string) string {
+	if s == "" {
+		return ""
+	}
 	padding := (SizeOfReceipt - len(s)) / 2
 	return fmt.Sprintf("%*s%s%*s\n", padding, "", s, padding, "")
 }
 
 func justifyRecept(s string) string {
+	if s == "" {
+		return ""
+	}
 	parts := strings.Split(s, "|")
 	left, right := parts[0], parts[1]
 	ans := Space[len(left):]

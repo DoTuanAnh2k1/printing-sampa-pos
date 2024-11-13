@@ -8,7 +8,7 @@ import (
 
 func replaceOrder(layout string, orderList []model.Order) string {
 	var orderOut string
-	orderOut = orderOut + "[ORDERS]\n"
+	// orderOut = orderOut + "[ORDERS]\n"
 	ordersSectionLayout := getOrdersSections(layout)
 	for _, order := range orderList {
 		quantity := fromStringToInt(order.Quantity)
@@ -23,12 +23,14 @@ func replaceOrder(layout string, orderList []model.Order) string {
 		orderOut = orderOut + tmp
 	}
 
-	return orderOut
+	layout = strings.ReplaceAll(layout, "{ORDERS}", orderOut)
+
+	return layout
 }
 
 func replaceOrderTag(layout string, orderTagList []model.OrderTag) string {
 	var orderTagOut string
-	orderTagOut = orderTagOut + "[ORDERS]\n"
+	// orderTagOut = orderTagOut + "[ORDERS TAGS]\n"
 	ordersTagSectionLayout := getOrderTagSection(layout)
 	for _, tag := range orderTagList {
 		tmp := ordersTagSectionLayout
@@ -37,13 +39,14 @@ func replaceOrderTag(layout string, orderTagList []model.OrderTag) string {
 		tmp += "\n"
 		orderTagOut = orderTagOut + tmp
 	}
+	layout = strings.ReplaceAll(layout, "{ORDERS TAGS}", orderTagOut)
 
-	return orderTagOut
+	return layout
 }
 
 func replaceOrderComp(layout string, orderCompList []model.OrderComp) string {
 	var orderCompOut string
-	orderCompOut = orderCompOut + "[ORDERS:Comp]\n"
+	// orderCompOut = orderCompOut + "[ORDERS:Comp]\n"
 	ordersCompSectionLayout := getOrderCompSection(layout)
 	for _, comp := range orderCompList {
 		tmp := ordersCompSectionLayout
@@ -54,13 +57,14 @@ func replaceOrderComp(layout string, orderCompList []model.OrderComp) string {
 		tmp += "\n"
 		orderCompOut = orderCompOut + tmp
 	}
+	layout = strings.ReplaceAll(layout, "{ORDERS:Comp}", orderCompOut)
 
-	return orderCompOut
+	return layout
 }
 
 func replaceOrderPromotion(layout string, orderPromotionList []model.OrderPromotion) string {
 	var orderPromotionOut string
-	orderPromotionOut = orderPromotionOut + "[ORDERS PROMOTIONS]\n"
+	// orderPromotionOut = orderPromotionOut + "[ORDERS PROMOTIONS]\n"
 	orderPromotionSectionLayout := getOrderPromotionSection(layout)
 	for _, comp := range orderPromotionList {
 		tmp := orderPromotionSectionLayout
@@ -70,7 +74,8 @@ func replaceOrderPromotion(layout string, orderPromotionList []model.OrderPromot
 		orderPromotionOut = orderPromotionOut + tmp
 	}
 
-	return orderPromotionOut
+	layout = strings.ReplaceAll(layout, "{ORDER PROMOTIONS}", orderPromotionOut)
+	return layout
 }
 
 func getOrdersSections(layout string) (ordersSectionLayout string) {

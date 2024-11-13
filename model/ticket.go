@@ -1,6 +1,7 @@
 package model
 
 type Ticket struct {
+	Index          string
 	Terminal       string
 	LoginUser      string
 	PaymentDate    string

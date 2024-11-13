@@ -1,6 +1,7 @@
 package layout
 
 import (
+	"fmt"
 	"printing-sampa-pos/model"
 	"strings"
 )
@@ -10,12 +11,9 @@ func FillValueLayout(ticket model.Ticket, layout string) string {
 }
 
 func replaceValue(layout string, ticket model.Ticket) string {
+	var sb strings.Builder
 	// replace mandatory
-	layout = strings.ReplaceAll(layout, "{Ticket.Terminal}", ticket.Terminal)
-	layout = strings.ReplaceAll(layout, "{Ticket.LoginUser}", ticket.LoginUser)
-	layout = strings.ReplaceAll(layout, "{Ticket.PaymentDate}", ticket.PaymentDate)
-	layout = strings.ReplaceAll(layout, "{Ticket.PaymentTime}", ticket.PaymentTime)
-	layout = strings.ReplaceAll(layout, "{Ticket.PaymentType}", ticket.PaymentType)
+	layout = replaceTicket(layout, ticket)
 
 	// replace order,
 	// includes order, order comp, gift, tag, promotions
@@ -23,22 +21,23 @@ func replaceValue(layout string, ticket model.Ticket) string {
 	layout = replaceOrderComp(layout, ticket.OrderComps)
 	layout = replaceOrderTag(layout, ticket.OrderTags)
 	layout = replaceOrderPromotion(layout, ticket.OrderPromotion)
+	fmt.Println(layout)
 
 	// replace tax
-	layout = replaceTax(layout, ticket.Taxes)
+	sb.WriteString(replaceTax(layout, ticket.Taxes))
 
 	// replace discount
-	layout = replaceDiscount(layout, ticket.Discounts)
+	sb.WriteString(replaceDiscount(layout, ticket.Discounts))
 
 	// replace service
-	layout = replaceService(layout, ticket.Services)
+	sb.WriteString(replaceService(layout, ticket.Services))
 
 	// replace payment
-	layout = replacePayment(layout, ticket.Payments)
+	sb.WriteString(replacePayment(layout, ticket.Payments))
 
 	// replace entity
-	layout = replaceEntityTable(layout, ticket.Entity.Table)
-	layout = replaceEntityMember(layout, ticket.Entity.Member)
+	sb.WriteString(replaceEntityTable(layout, ticket.Entity.Table))
+	sb.WriteString(replaceEntityMember(layout, ticket.Entity.Member))
 
-	return removeEmptyLines(layout)
+	return removeEmptyLines(sb.String())
 }

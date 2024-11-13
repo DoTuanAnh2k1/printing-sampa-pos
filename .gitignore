@@ -33,3 +33,6 @@ main
 # vscode
 .vscode
 .idea
+
+# log
+log.txt

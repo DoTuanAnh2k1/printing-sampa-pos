@@ -11,7 +11,6 @@
 <C>Receipt
 <F>-
 <J>Check No:|{TICKET NO}
-<J>Order Time:|{TICKET TIME}
 <JOO>Terminal|Terminal
 <JOO>Cashier|Chronnical Do 
 <C>2006-01-02 15:12:13
@@ -32,10 +31,7 @@
 <J10>Total:|S$ {TICKET TOTAL}
 <F>-
 {PAYMENTS}
-[<L>Ref No: {REFERENCENUMBER}]
 <F>-
-[<JOO>Tendered : |{TICKET TAG:Tendered}]
-[<JOO>Change   : |{TICKET TAG:ChangeDue}]
 <DB>
 <F>-
 {ENTITIES}

@@ -24,9 +24,8 @@ func main() {
 		panic(err)
 	}
 
-	// TODO: Keep going on this
 	layoutFill := layout_utils.FillValueLayout(ticket, layout)
-	fmt.Println(layoutFill)
+	// fmt.Println(layoutFill)
 
 	layoutData, err := printing.HandleLayout(layoutFill)
 	if err != nil {
