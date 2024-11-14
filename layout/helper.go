@@ -1,6 +1,7 @@
 package layout
 
 import (
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -28,4 +29,21 @@ func removeEmptyLines(input string) string {
 		}
 	}
 	return strings.Join(nonEmptyLines, "\n")
+}
+
+func getSection(layout string, regexStr string) (fullSection string, valueSection string) {
+	reStr := regexp.MustCompile(regexStr)
+	matches := reStr.FindStringSubmatch(layout)
+	if len(matches) > 1 {
+		fullSection = removeLastCharacter(matches[0])
+		valueSection = matches[1]
+	}
+	return
+}
+
+func removeLastCharacter(s string) string {
+	if len(s) < 1 {
+		return s
+	}
+	return s[:len(s)-1]
 }

@@ -36,7 +36,8 @@ func GetLineFormat(line string) (string, error) {
 // Convert from line type string to Line have format
 func HandlerLine(line string) (*Line, error) {
 	var lineInfo Line
-	if line == "<EB>" || line == "<DB>" {
+	if line == "<EB>" || line == "<DB>" ||
+		line == "<EC>" || line == "<DC>" || strings.HasPrefix(line, "<XCT>") {
 		lineInfo.Body = line
 		return &lineInfo, nil
 	}

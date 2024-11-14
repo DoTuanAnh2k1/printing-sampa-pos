@@ -82,7 +82,7 @@ func TestHandleEntity(t *testing.T) {
 }
 
 func TestHandleLayout(t *testing.T) {
-	output, err := printing.HandleLayout(printing.LayoutTest)
+	output, _, err := printing.HandleLayout(printing.LayoutTest)
 	require.NoError(t, err)
 	fmt.Println(output)
 }

@@ -35,4 +35,4 @@ main
 .idea
 
 # log
-log.txt
+log/*

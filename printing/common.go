@@ -50,9 +50,15 @@ func centerlizeReceipt(s string) string {
 
 func justifyRecept(s string) string {
 	if s == "" {
-		return ""
+		return "\n"
 	}
 	parts := strings.Split(s, "|")
+	if len(parts) == 0 {
+		return s + "\n"
+	}
+	if len(parts) == 1 {
+		return parts[0] + "\n"
+	}
 	left, right := parts[0], parts[1]
 	ans := Space[len(left):]
 	ans = left + ans

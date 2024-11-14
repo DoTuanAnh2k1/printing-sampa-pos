@@ -15,12 +15,12 @@ func PrintFromTicket(ticket model.Ticket, layoutPath string) error {
 	}
 	layoutFill := layout_utils.FillValueLayout(ticket, layout)
 
-	layoutData, err := printing.HandleLayout(layoutFill)
+	layoutData, commandList, err := printing.HandleLayout(layoutFill)
 	if err != nil {
 		return err
 	}
 
-	err = printing.Printing(layoutData)
+	err = printing.Printing(layoutData, commandList)
 	if err != nil {
 		return err
 	}

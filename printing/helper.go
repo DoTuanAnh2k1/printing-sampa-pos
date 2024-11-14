@@ -1,15 +1,15 @@
 package printing
 
 import (
-	"errors"
 	"strconv"
 	"strings"
 )
 
 func convertFromStringToInt(s string) (int, error) {
+	s = strings.TrimSpace(s)
 	num, err := strconv.Atoi(s)
 	if err != nil {
-		return 0, errors.New("invalid number")
+		return 0, err
 	}
 	return num, nil
 }

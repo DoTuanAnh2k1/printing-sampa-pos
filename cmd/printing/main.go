@@ -25,12 +25,12 @@ func main() {
 	}
 
 	layoutFill := layout_utils.FillValueLayout(ticket, layout)
-	// fmt.Println(layoutFill)
 
-	layoutData, err := printing.HandleLayout(layoutFill)
+	layoutData, command, err := printing.HandleLayout(layoutFill)
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println(layoutData)
+	fmt.Println("----------------------------------------------------------------")
+	fmt.Println(command)
 }
