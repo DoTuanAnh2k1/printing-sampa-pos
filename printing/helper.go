@@ -7,6 +7,9 @@ import (
 
 func convertFromStringToInt(s string) (int, error) {
 	s = strings.TrimSpace(s)
+	if s == "o" || s == "O" {
+		return 0, nil
+	}
 	num, err := strconv.Atoi(s)
 	if err != nil {
 		return 0, err

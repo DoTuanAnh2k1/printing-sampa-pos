@@ -11,7 +11,7 @@
 <F>-
 <J>Check NO:|{TICKET NO}
 <J00>Terminal|{CURRENT TERMINAL}
-<J00>Cashier|{Ticket.LOginUser}
+<J00>Cashier|{Ticket.LoginUser}
 
 <C>Bill : {TICKET PAYMENT DATE} {TICKET PAYMENT TIME}
 <J00>Cover:{TICKET TAG:PAX}
@@ -23,7 +23,6 @@
 <EB>
 {DISCOUNTS}
 {SERVICES}
-<J00>Total Wastage:|{ORDER STATE T0TAL:Comp}
 {TAXES}
 <J10>Total:|S$ {TICKET TOTAL}
 <F>-

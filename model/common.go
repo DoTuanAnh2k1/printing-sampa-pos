@@ -22,6 +22,12 @@ const (
 	TagJustify = "Justify"
 )
 
+const (
+	TimeFormatDate     = "2006-01-02"
+	TimeFormatTime     = "15:04:05"
+	TimeFormatDateTime = "2006-01-02 15:04:05"
+)
+
 func CenterlizeReceipt(s string) string {
 	padding := (SizeOfReceipt - len(s)) / 2
 	return fmt.Sprintf("%*s%s%*s\n", padding, "", s, padding, "")

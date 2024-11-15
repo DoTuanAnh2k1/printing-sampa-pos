@@ -7,6 +7,7 @@ type Ticket struct {
 	PaymentDate    string
 	PaymentTime    string
 	PaymentType    string
+	Total          string
 	Tag            Tag
 	Payments       []Payment
 	Orders         []Order

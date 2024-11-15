@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	// _ "github.com/chronnie/go-escposv"
-	"github.com/mect/go-escpos"
+	"github.com/chronnie/go-escpos"
 )
 
 func Printing(data string, commandList []byte) error {

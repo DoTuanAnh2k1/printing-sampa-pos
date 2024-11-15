@@ -42,7 +42,7 @@ const (
 
 func centerlizeReceipt(s string) string {
 	if s == "" {
-		return ""
+		return "\n"
 	}
 	padding := (SizeOfReceipt - len(s)) / 2
 	return fmt.Sprintf("%*s%s%*s\n", padding, "", s, padding, "")

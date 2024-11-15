@@ -1,4 +1,4 @@
-package phatlc
+package pos
 
 import (
 	layout_utils "printing-sampa-pos/layout"
