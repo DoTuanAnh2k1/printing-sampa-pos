@@ -1,10 +1,11 @@
 package parsing
 
 import (
-	"printing-sampa-pos/model"
-	"printing-sampa-pos/utils"
 	"regexp"
 	"strings"
+
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/model"
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/utils"
 )
 
 func ParsingValue(inputFileLayoutPath, inputFileTemplatePath string) string {

@@ -1,7 +1,7 @@
 package layout
 
 import (
-	"printing-sampa-pos/model"
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/model"
 )
 
 func FillValueLayout(ticket model.Ticket, layout string) string {

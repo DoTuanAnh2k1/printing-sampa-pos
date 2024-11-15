@@ -2,8 +2,9 @@ package parsing_test
 
 import (
 	"fmt"
-	"printing-sampa-pos/parsing"
 	"testing"
+
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/parsing"
 
 	"github.com/stretchr/testify/require"
 )

@@ -2,8 +2,9 @@ package printing_test
 
 import (
 	"fmt"
-	"printing-sampa-pos/printing"
 	"testing"
+
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/printing"
 
 	"github.com/stretchr/testify/require"
 )

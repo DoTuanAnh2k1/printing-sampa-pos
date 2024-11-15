@@ -1,8 +1,9 @@
 package parsing
 
 import (
-	"printing-sampa-pos/utils"
 	"strings"
+
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/utils"
 )
 
 func getTemplate(inputFileTemplatePath string) string {

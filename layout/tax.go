@@ -1,8 +1,9 @@
 package layout
 
 import (
-	"printing-sampa-pos/model"
 	"strings"
+
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/model"
 )
 
 func replaceTax(layout string, taxList []model.Tax) string {

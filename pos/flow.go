@@ -1,11 +1,11 @@
 package pos
 
 import (
-	layout_utils "printing-sampa-pos/layout"
-	"printing-sampa-pos/model"
-	"printing-sampa-pos/parsing"
-	"printing-sampa-pos/printing"
-	"printing-sampa-pos/utils"
+	layout_utils "github.com/DoTuanAnh2k1/printing-sampa-pos/layout"
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/model"
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/parsing"
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/printing"
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/utils"
 )
 
 func PrintFromTicket(ticket model.Ticket, layoutPath string) error {

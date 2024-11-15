@@ -1,9 +1,10 @@
 package main
 
 import (
-	"printing-sampa-pos/model"
-	"printing-sampa-pos/pos"
 	"time"
+
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/model"
+	"github.com/DoTuanAnh2k1/printing-sampa-pos/pos"
 )
 
 func main() {
